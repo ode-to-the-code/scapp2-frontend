@@ -1,5 +1,7 @@
 
 import React from 'react';
+import {connect} from 'react-redux';
+import IncidentsContainer from './containers/IncidentsContainer.js'
 
 
 class App extends React.Component {
@@ -17,13 +19,11 @@ class App extends React.Component {
   render() {
   return (
     <div className="App">
-      App
+      <IncidentsContainer />
     </div>
   );
 
     }
 }
 
-
-
-export default App;
+export default connect(null)(App);
