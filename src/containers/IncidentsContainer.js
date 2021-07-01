@@ -4,11 +4,15 @@ import {connect} from 'react-redux';
 
 import IncidentList from '../components/IncidentList'
 import IncidentInput from '../components/IncidentInput'
+import Incident from '../components/Incident'
+
+import {Route, Switch} from 'react-router-dom';
 import fetchIncidents from '../actions/fetchIncidents'
 
 
 
 class IncidentsContainer extends React.Component {
+  // debugger;
 
 
   componentDidMount(){
@@ -19,10 +23,14 @@ class IncidentsContainer extends React.Component {
 
 
   render(){
+
     return(
       <div>
-        <IncidentList incidents={this.props.incidents}/>
-        <IncidentInput />
+        <Switch>
+          <Route path='/incidents/new' component={IncidentInput} />
+          <Route path='/incidents/:id' render={(routerProps) => <Incident {...routerProps} incidents={this.props.incidents} />}  />
+          <Route path='/incidents' render={(routerProps) => <IncidentList {...routerProps} incidents={this.props.incidents} />}  />
+        </Switch>
       </div>
     )
   }
